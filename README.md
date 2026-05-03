@@ -15,3 +15,9 @@
     historization of data is not required 
 5-  Documentation 
     Provided a clear documantation of data model to support both business stakeholders and analytices tools
+
+*  BI Analytices & Reporting (Data Analytics)
+  Objective
+  Customer Behavior
+  Product Performence
+  Sales Trends
