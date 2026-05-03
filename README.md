@@ -4,9 +4,9 @@
 // Project Requirement //
    Develope Modern Data Warehouse Using SQL SERVER To consolidate Sales_Data,Enbabling Analytical Reporting And Informed Decision Making 
 // Specification // 
-1-  Data Sources 
+*  Data Sources 
     import data from 2 sources [ERP,CRM] provided by csv_files 
-2- Data Quality 
+*  Data Quality 
     cleaning and resolve data quality proir to analysis 
 3 - Intergation 
     combine bith sources into a single user friendly data model designed for analytical queries 
