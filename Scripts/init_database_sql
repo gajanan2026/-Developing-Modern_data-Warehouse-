@@ -1,1 +1,26 @@
+--- CHEAK DATABSE IS ALREADY EXIST OR NOT 
+IF EXISTS (
+    SELECT 1 
+    FROM sys.databases 
+    WHERE name = 'DataWarehouse'
+)
+BEGIN
+    PRINT 'Database already exists';
+END
+GO
 
+---- CREATE DATABASE ----
+create database DataWarehouse 
+GO
+use dataWarehouse
+GO
+
+---   WE USE MEDALLION ARCHITECURE FOR CREATING DATA WAREHOUSE 
+
+---  CREATING SCHEMAS --       [TO CHEAK SCHEMA GO TO SECURITY]
+create  schema bronze;
+Go
+create schema silver;
+Go
+create schema gold ;
+Go
