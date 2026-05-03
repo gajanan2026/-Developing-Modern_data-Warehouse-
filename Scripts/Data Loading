@@ -1,8 +1,13 @@
-  ---  USE BULK INSET METHOD WITH TRUNCATE 
+  ---  USE BULK INSET METHOD WITH TRUNCATE  
+  --- WE MADE STORED PROCEDURE 
+
 
 ----------------------------------------------  1 TABLE [bronze].[crm_cust_info]  ----------------------------------------------------------------------------------
 /* DATA LOADING INTO THE TABLE */
 -- 1 TABLE 
+CREATE OR ALTER  PROCEDURE BRONZE.LOAD_BRONZE 
+AS 
+BEGINE
 TRUNCATE TABLE [bronze].[crm_cust_info]      ---IMP 
 BULK INSERT [bronze].[crm_cust_info]
 FROM 'D:\Bara project dataset\DAta_Warehouse_Project_zip\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
@@ -30,7 +35,6 @@ WITH (
     FIELDTERMINATOR  = ',',
     TABLOCK   
 )
-SELECT * FROM [bronze].[crm_sales_details]
 
 ----------------------------------------------  4 TABLE [bronze].[erp_cust_az12]  ----------------------------------------------------------------------------------
 TRUNCATE TABLE [bronze].[erp_cust_az12]
@@ -41,7 +45,7 @@ WITH(
     FIELDTERMINATOR = ',',
     TABLOCK
 )
-SELECT * FROM [bronze].[erp_cust_az12]
+
 ----------------------------------------------  5 TABLE [bronze].[erp_loc_a101]  ----------------------------------------------------------------------------------
 
 TRUNCATE TABLE [bronze].[erp_loc_a101]
@@ -52,7 +56,7 @@ WITH(
     FIELDTERMINATOR = ',',
     TABLOCK
     )
-SELECT * FROM [bronze].[erp_loc_a101]
+
 ----------------------------------------------  6 TABLE  [bronze].[erp_px_cat_g1v2]  ----------------------------------------------------------------------------------
 TRUNCATE TABLE [bronze].[erp_px_cat_g1v2]
 BULK INSERT [bronze].[erp_px_cat_g1v2]
@@ -62,6 +66,9 @@ WITH(
     FIELDTERMINATOR = ',',
     TABLOCK
     )
-SELECT * FROM [bronze].[erp_px_cat_g1v2]
+END 
+
+-- EXECUATION OD STORED PROCEDURE 
+EXEC BRONZE.LOAD.BRONZE
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
