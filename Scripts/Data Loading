@@ -5,9 +5,10 @@
 ----------------------------------------------  1 TABLE [bronze].[crm_cust_info]  ----------------------------------------------------------------------------------
 /* DATA LOADING INTO THE TABLE */
 -- 1 TABLE 
-CREATE OR ALTER  PROCEDURE BRONZE.LOAD_BRONZE 
-AS 
-BEGINE
+CREATE OR ALTER  PROCEDURE BRONZE.LOAD_BRONZE AS 
+BEGIN    --SP START 
+BEGIN TRY  --TRY BLOCK START 
+BEGIN TRANSACTION   ---TRANSACTION START
 TRUNCATE TABLE [bronze].[crm_cust_info]      ---IMP 
 BULK INSERT [bronze].[crm_cust_info]
 FROM 'D:\Bara project dataset\DAta_Warehouse_Project_zip\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
@@ -66,9 +67,20 @@ WITH(
     FIELDTERMINATOR = ',',
     TABLOCK
     )
-END 
+COMMIT   -- TRANSACTION END 
+END TRY   -- TRY BLOCK END 
 
--- EXECUATION OD STORED PROCEDURE 
+BEGIN CATCH   -- CATCH BLOCK START 
+ IF @@TRANCOUNT > 0
+    ROLLBACK
+  SELECT 
+      ERROR_MESSAGE() AS MESSAGE,
+      ERROR_LINE() AS LINE 
+END CATCH   --CATCH BLOCK END 
+END     ---- STORED PROCEDURE END 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                  -- EXECUATION OD STORED PROCEDURE 
 EXEC BRONZE.LOAD.BRONZE
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
