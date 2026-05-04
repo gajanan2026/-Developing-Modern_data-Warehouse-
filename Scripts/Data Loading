@@ -1,6 +1,7 @@
   ---  USE BULK INSET METHOD WITH TRUNCATE  
-  --- WE MADE STORED PROCEDURE 
-
+  --- WE MADE STORED PROCEDURE
+  --- USE OF TRY BLOCK AND CATCH BLOCK  [ERROR_MESSAGE(),EROOR_LINE()]
+  --  USE OF TRANSACTION  (COMMIT,ROLLBACK,@@TRANCOUNT)
 
 ----------------------------------------------  1 TABLE [bronze].[crm_cust_info]  ----------------------------------------------------------------------------------
 /* DATA LOADING INTO THE TABLE */
