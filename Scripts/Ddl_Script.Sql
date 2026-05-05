@@ -9,7 +9,7 @@ CREATE OR ALTER PROCEDURE  BRONZE.LOAD_BRONZE AS     /* CREATE OR ALTER USE INST
 BEGIN    
 BEGIN TRY 
     BEGIN TRANSACTION 
-    ------------------------------------ 1 TABLE ------------------------------------------------------------------
+    ------------------------------------- ----------------------  1 TABLE  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
      DECLARE @Start1 DATETIME2 = SYSDATETIME()
     TRUNCATE TABLE [bronze].[crm_cust_info]      ---IMP 
     BULK INSERT [bronze].[crm_cust_info]
