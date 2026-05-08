@@ -2,7 +2,7 @@
 
 
 
-CREATE  OR ALTER PROCEDURE SILVER.SILVER_LOAD  AS       --- PROCEDURE START 
+CREATE  OR ALTER PROCEDURE SILVER.LOAD_SILVER AS       --- PROCEDURE START 
 BEGIN 
 BEGIN TRY 
  SET XACT_ABORT ON;
@@ -216,5 +216,5 @@ END                          ----PROCEDURE_END
 
 --------------------------------------------------------------------------------------------------------------
 -------------------------------- EXECUATION OF SILVER.SILVER_LOAD ------------------------------------------
-EXEC SILVER.SILVER_LOAD
+EXEC SILVER.LOAD_SILVER
 -------------------------------------------------------------------------------------------------------------
