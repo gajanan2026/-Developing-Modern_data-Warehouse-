@@ -9,8 +9,8 @@ CREATE OR ALTER PROCEDURE  BRONZE.LOAD_BRONZE AS     /* CREATE OR ALTER USE INST
 BEGIN    
 BEGIN TRY 
     BEGIN TRANSACTION 
-    ------------------------------------- ----------------------  1 TABLE  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     DECLARE @Start1 DATETIME2 = SYSDATETIME()
+------------------------------------- ----------------------  1 TABLE  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    DECLARE @Start1 DATETIME2 = SYSDATETIME()
     TRUNCATE TABLE [bronze].[crm_cust_info]      ---IMP 
     BULK INSERT [bronze].[crm_cust_info]
     FROM 'D:\Bara project dataset\DAta_Warehouse_Project_zip\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
@@ -23,7 +23,7 @@ BEGIN TRY
     select
     DATEDIFF(MILLISECOND,@Start1,@End1) as load_time_t1
 
-   ----------------------------------------------------- 2 TABLE -----------------------------------------------------------------------
+----------------------------------------------------- 2 TABLE -------------------------------------------------------------------------------------------------------------
     declare @start2 datetime2 = sysdatetime()
     TRUNCATE TABLE [bronze].[crm_prd_info]
     BULK INSERT [bronze].[crm_prd_info]
@@ -36,7 +36,8 @@ BEGIN TRY
     declare @end2 datetime2 = sysdatetime()
     select 
         DATEDIFF(MILLISECOND,@start2,@end2) as load_time_t2
-    ---------------------  3 TABLE  -------------------------------------------------------------------
+
+    ---------------------------------------------------  3 TABLE  ----------------------------------------------------------------------------------------------------------
     declare @start3 datetime2 = sysdatetime()
     TRUNCATE TABLE [bronze].[crm_sales_details]
     BULK INSERT [bronze].[crm_sales_details] 
@@ -49,7 +50,8 @@ BEGIN TRY
     declare @end3 datetime2 = sysdatetime()
     select
         DATEDIFF(MILLISECOND,@start3,@end3)load_time_t3
-    ---------------------  4 TABLE  ------------------------------------------------------------------------
+
+------------------------------------------------------  4 TABLE  -------------------------------------------------------------------------------------------------------------
     declare @start4 datetime2 = sysdatetime()
     TRUNCATE TABLE [bronze].[erp_cust_az12]
     BULK INSERT [bronze].[erp_cust_az12]
@@ -62,7 +64,8 @@ BEGIN TRY
    declare @end4 datetime2 = sysdatetime()
     select
         DATEDIFF(MILLISECOND,@start4,@end4)load_time_t4
-    ---------------------  5TABLE  ------------------------------------------------------------------------
+
+    --------------------------------------------------------- 5TABLE  -----------------------------------------------------------------------------------------------------
      declare @start5 datetime2 = sysdatetime()
     TRUNCATE TABLE [bronze].[erp_loc_a101]
     BULK INSERT [bronze].[erp_loc_a101]
@@ -75,7 +78,7 @@ BEGIN TRY
    declare @end5 datetime2 = sysdatetime()
     select
         DATEDIFF(MILLISECOND,@start5,@end5)load_time_t5
-    ---------------------  6TABLE  -------------------------------------------------------------------------------
+-------------------------------------------------------------  6TABLE  ----------------------------------------------------------------------------------------------------
     declare @start6 datetime2 = sysdatetime()
     TRUNCATE TABLE [bronze].[erp_px_cat_g1v2]
     BULK INSERT [bronze].[erp_px_cat_g1v2]
@@ -98,8 +101,9 @@ BEGIN CATCH
             ERROR_LINE() AS Line
 END CATCH
 END 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------------------------
-EXEC  BRONZE.LOAD_BRONZE    -- EXECUATION OF STORED PROCEDURE 
----------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+EXEC  BRONZE.LOAD_BRONZE         <<---- EXECUATION OF STORED PROCEDURE 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
