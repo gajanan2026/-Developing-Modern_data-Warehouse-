@@ -3,7 +3,13 @@ Welcome to the Data Warehouse and Analytics Project repository!
 This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights
 
 # Data Architecture
+
   The data architecture for this project follows Medallion Architecture Bronze, Silver, and Gold layers:
+<img width="1544" height="803" alt="data_architecture3 png" src="https://github.com/user-attachments/assets/8b02547d-2983-4df6-9402-d65c1789599f" />
+
+
+
+
   
 * Bronze Layer: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
 * Silver Layer: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
@@ -45,29 +51,32 @@ Sales Trends
 These insights empower stakeholders with key business metrics, enabling strategic decision-making.
 # Repository Structure
 
+```bash
 data-warehouse-project/
 │
-├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
+├── datasets/                          # Raw datasets (ERP and CRM data)
 │
-├── docs/                               # Project documentation and architecture details
-│   ├── etl.drawio                      # Draw.io file shows all different techniquies and methods of ETL
-│   ├── data_architecture.drawio        # Draw.io file shows the project's architecture
-│   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── data_flow.drawio                # Draw.io file for the data flow diagram
-│   ├── data_models.drawio              # Draw.io file for data models (star schema)
-│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
+├── docs/                              # Project documentation & architecture
+│   ├── etl.drawio                     # ETL process diagrams
+│   ├── data_architecture.drawio       # Overall system architecture
+│   ├── data_catalog.md                # Dataset metadata & field descriptions
+│   ├── data_flow.drawio               # Data flow diagram
+│   ├── data_models.drawio             # Star schema / data models
+│   ├── naming-conventions.md          # Naming standards for tables & columns
 │
-├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/                         # Scripts for extracting and loading raw data
-│   ├── silver/                         # Scripts for cleaning and transforming data
-│   ├── gold/                           # Scripts for creating analytical models
+├── scripts/                           # SQL scripts for ETL process
+│   ├── bronze/                        # Raw data ingestion scripts
+│   ├── silver/                        # Data cleaning & transformation scripts
+│   ├── gold/                          # Analytical model / reporting layer
 │
-├── tests/                              # Test scripts and quality files
+├── tests/                             # Data validation & quality checks
 │
-├── README.md                           # Project overview and instructions
-├── LICENSE                             # License information for the repository
-├── .gitignore                          # Files and directories to be ignored by Git
-└── requirements.txt                    # Dependencies and requirements for the project
+├── README.md                          # Project overview & instructions
+├── LICENSE                            # License information
+├── .gitignore                         # Files to ignore in Git
+└── requirements.txt                   # Project dependencies
+```
+
 
 # License
 This project is licensed under the MIT License. You are free to use, modify, and share this project with proper attribution.
