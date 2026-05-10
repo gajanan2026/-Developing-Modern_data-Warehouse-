@@ -1,6 +1,22 @@
+/*
+===============================================================================
+Stored Procedure: Load Silver Layer (Bronze -> Silver)
+===============================================================================
+Script Purpose:
+    This stored procedure performs the ETL (Extract, Transform, Load) process to 
+    populate the 'silver' schema tables from the 'bronze' schema.
+	Actions Performed:
+		- Truncates Silver tables.
+		- Inserts transformed and cleansed data from Bronze into Silver tables.
+		
+Parameters:
+    None. 
+	  This stored procedure does not accept any parameters or return any values.
 
-
-
+Usage Example:
+    EXEC Silver.load_silver;
+===============================================================================
+*/
 
 CREATE  OR ALTER PROCEDURE SILVER.LOAD_SILVER AS       --- PROCEDURE START 
 BEGIN 
@@ -46,7 +62,7 @@ DECLARE @END1 datetime2 = sysdatetime()
 select DATEDIFF(MILLISECOND,@start1 ,@end1) as load_time_t1
   
 ------------------------------------------------ [silver].[crm_prd_info] Data Transformation And Loading   -----------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 DECLARE @START2 DATETIME2 = SYSDATETIME()
 TRUNCATE TABLE [silver].[crm_prd_info];
 insert into [silver].[crm_prd_info] 
@@ -79,8 +95,6 @@ from bronze.crm_prd_info
 DECLARE @END2 DATETIME =SYSDATETIME()
 SELECT DATEDIFF(MILLISECOND,@START2,@END2) AS LOAD_TIME_T2
 -------------------------------------------------------------- [silver].[crm_sales_details]] Data Transformation And Loading  ---------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /* SOME CHANGES NEEDED  
     sls_order_dt DATE,
@@ -136,7 +150,7 @@ DECLARE @END3 DATETIME2 = SYSDATETIME()
 SELECT DATEDIFF(MILLISECOND,@START3,@END3) AS LOAD_TIME_T3
 
 ------------------------------------------------------------------------------    [silver].[erp_cust_az12]] Data Transformation And Loading  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 DECLARE @START4 DATETIME2 = SYSDATETIME ()
 TRUNCATE TABLE [silver].[erp_cust_az12] ;
 insert into [silver].[erp_cust_az12] 
@@ -165,7 +179,7 @@ from [bronze].[erp_cust_az12]
 DECLARE @END4 DATETIME2 = SYSDATETIME ()
 SELECT 
     DATEDIFF(MILLISECOND,@START4,@END4) AS LOAD_TIME_T4
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 -----------------------------------------------------------------------[silver].[erp_loc_a101]--------------------------------------------------------------------------------------------------------------------------------------------
 DECLARE @START5 DATETIME2 = SYSDATETIME()
 TRUNCATE TABLE [silver].[erp_loc_a101]
@@ -186,7 +200,7 @@ DECLARE @END5 DATETIME2 = SYSDATETIME()
 SELECT 
     DATEDIFF(MILLISECOND,@START5,@END5) AS LOAD_TIME_T5
 --------------------------------------------------- silver].[erp_px_cat_g1v2] --------------------------------------------------------------------------------------------------------------
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 DECLARE @START6 DATETIME2 = SYSDATETIME()
 TRUNCATE TABLE [silver].[erp_px_cat_g1v2];
  insert into [silver].[erp_px_cat_g1v2]    /* No Change In This Column */
@@ -204,7 +218,7 @@ from [bronze].[erp_px_cat_g1v2]
 DECLARE @END6 DATETIME2= SYSDATETIME()
 SELECT 
     DATEDIFF(MILLISECOND,@START6,@END6) AS LOAD_TIME_T6
-------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------
 COMMIT
 END TRY 
 BEGIN CATCH 
@@ -214,7 +228,7 @@ BEGIN CATCH
 END CATCH
 END                          ----PROCEDURE_END 
 
---------------------------------------------------------------------------------------------------------------
+
 -------------------------------- EXECUATION OF SILVER.SILVER_LOAD ------------------------------------------
 EXEC SILVER.LOAD_SILVER
 -------------------------------------------------------------------------------------------------------------
